@@ -1,0 +1,12 @@
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY main.py .
+COPY trade_engine_v040_demo.py .
+COPY trade_engine_v050_auto_demo.py .
+COPY trade_engine_v063_active_training_70s_data_demo.py .
+RUN mkdir -p /data
+EXPOSE 8000
+CMD ["python", "trade_engine_v063_active_training_70s_data_demo.py"]
